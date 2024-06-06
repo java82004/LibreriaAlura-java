@@ -1,11 +1,14 @@
-# LibreriaAlura-java
+<h1> # LibreriaAlura-java </h1>
 
 Challenge desarrollado durante el curso de la formación Java y Spring Boot G6 - ONE de Alura
 
 Librería Alura es una aplicación de consola para gestionar libros y autores, integrándose con la API de Gutendex para la búsqueda de libros. 
 Esta aplicación permite registrar, listar, y analizar estadísticas de libros y autores en una base de datos.
 
-## 🔨 Objetivos del proyecto
+![pantallaPpal](https://github.com/java82004/LibreriaAlura-java/assets/156710851/a303bb40-6aca-494f-97a0-bf6c0a5b2ab3)
+
+
+## Objetivos del proyecto
 
 * Aplicar conceptos avanzados de Java y Spring;
 * Utilizar Spring Data JPA para persistir datos en la base de datos;
