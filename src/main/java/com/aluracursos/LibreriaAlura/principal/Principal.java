@@ -40,6 +40,7 @@ public class Principal {
                     6 - Top 10 Libros mas descargados
                     7 - Buscar libro por nombre de autor
                     8 - Generando Estadisticas de libros descargados
+                    9 - Top 10 libros por Género Literario
                     0 - Salir                    
                     """;
             System.out.println(menu);
@@ -70,6 +71,9 @@ public class Principal {
                     break;
                 case 8:
                     calcularEstadisticasDescargas();
+                    break;
+                case 9:
+                    top10LibrosPorGenero();
                     break;
                 case 0:
                     System.out.println("Cerrando la aplicación...");
@@ -267,16 +271,6 @@ public class Principal {
         }
     }
 
-//    private void calcularEstadisticasDescargas() {
-//        DoubleSummaryStatistics est = libros.stream()
-//                .mapToDouble(Libro::getNumeroDeDescargas)
-//                .summaryStatistics();
-//        System.out.println("Cantidad media de descargas: " + est.getAverage());
-//        System.out.println("Cantidad Máxima de descargas: " + est.getMax());
-//        System.out.println("Cantidad Mínima de descargas: " + est.getMin());
-//        System.out.println("Cantidad de registros evaluados para calcular las estadisticas: " + est.getCount());
-//    }
-
     public void calcularEstadisticasDescargas() {
         // Consultar la base de datos para obtener todas las descargas de libros
         List<Double> descargas = libroRepository.findAllDescargas();
@@ -293,17 +287,41 @@ public class Principal {
         System.out.println("Cantidad de registros evaluados para calcular las estadísticas: " + est.getCount());
     }
 
-//    public void muestraMenuGenero() {
-//        System.out.println("""
-//               Ingrese el Genero para buscar los libros:
-//               1 - Fiction
-//               2 - Mystery
-//               3 - Comedy
-//               4 - Adventure
-//               5 - Children
-//               6 - Horror Tales
-//               """);
-//    }
+    private void top10LibrosPorGenero() {
+        System.out.print("Ingrese el Genero o topico que desea buscar: ");
+        String libroGenero = teclado.nextLine();
+
+        String busqueda = "?topic=" + libroGenero.replace(" ","+");
+        var json = consulta.obtenerDatos(URL_BASE + busqueda);
+//        System.out.println(json);
+        var datos = conversor.obtenerDatos(json, Datos.class);
+
+        // Verificar si hay resultados
+        if (datos.resultados().isEmpty()) {
+            System.out.println("No se encontraron libros para el género especificado.");
+            return;
+        }
+
+        // Tomar solo los primeros 10 resultados
+        List<DatosLibros> top10Libros = datos.resultados().stream()
+                .limit(10).
+                collect(Collectors.toList());
+        System.out.println("\n----- TOP 10 LIBROS: -----");
+        top10Libros.forEach(datoslibro -> {
+            String titulo = datoslibro.titulo();
+            String autor = datoslibro.autor().isEmpty() ? "Autor desconocido" : datoslibro.autor().get(0).nombre();
+            String idioma = datoslibro.idiomas().isEmpty() ? "Idioma desconocido" : datoslibro.idiomas().get(0);
+            Double numeroDescargas = datoslibro.numeroDeDescargas();
+
+            // Formatear la salida del libro con autor
+            System.out.println("Título: " + titulo);
+            System.out.println("Autor: " + autor);
+            System.out.println("Idioma: " + idioma);
+            System.out.println("Número de Descargas: " + numeroDescargas);
+            System.out.println("-----------------");
+        });
+    }
+
 
 
 }
