@@ -24,23 +24,44 @@ Esta aplicación permite registrar, listar, y analizar estadísticas de libros y
 
 ## Caracteristicas
 
-1.	Buscar libro por título: Permite buscar libros en la web mediante el nombre y registrarlos en la base de datos si no están registrados.
-2.	Listar libros registrados: Muestra todos los libros registrados en la base de datos.
-3.	Listar autores registrados: Muestra todos los autores registrados en la base de datos.
-4.	Listar autores vivos en un determinado año: Permite buscar y listar autores que estaban vivos en un año específico.
-5.	Listar libros por idioma: Muestra libros registrados en la base de datos filtrados por el idioma especificado.
-6.	Top 10 Libros más descargados: Muestra los 10 libros más descargados registrados en la base de datos.
-7.	Buscar libro por nombre de autor: Permite buscar y listar libros por el nombre del autor.
-8.	Generar estadísticas de libros descargados: Calcula y muestra estadísticas sobre el número de descargas de los libros registrados.
+1.	**Buscar libro por título:** Permite buscar libros en la web mediante el nombre y registrarlos en la base de datos si no están registrados.
+2.	**Listar libros registrados:** Muestra todos los libros registrados en la base de datos.
+3.	**Listar autores registrados:** Muestra todos los autores registrados en la base de datos.
+4.	**Listar autores vivos en un determinado año:** Permite buscar y listar autores que estaban vivos en un año específico.
+5.	**Listar libros por idioma:** Muestra libros registrados en la base de datos filtrados por el idioma especificado.
+6.	**Top 10 Libros más descargados:** Muestra los 10 libros más descargados registrados en la base de datos.
+7.	**Buscar libro por nombre de autor:** Permite buscar y listar libros por el nombre del autor.
+8.	**Generar estadísticas de libros descargados:** Calcula y muestra estadísticas sobre el número de descargas de los libros registrados.
+9.	**Top 10 libros por género literario:** Muestra los 10 libros más populares de un género específico consultando la API de Gutendex.
 	
 ## Requisitos
 
 •  Java 17
-•  Una base de datos PostgreSQL
-	
+•  Maven
+•  Base de datos PostgreSQL
+
+## Clonar el repositorio
+```bash
+git clone https://github.com/tu-usuario/libreria-alura.git
+cd libreria-alura
+```
+
+## Configuración de la base de datos
+
+1.	Crear una base de datos en PostgreSQL.
+2.	Configurar las credenciales de la base de datos en src/main/resources/application.properties.
+
+```properties
+spring.datasource.url=jdbc:postgresql://localhost:5432/libreria_alura
+spring.datasource.username=tu_usuario
+spring.datasource.password=tu_contraseña
+spring.jpa.hibernate.ddl-auto=update
+```
 ## Uso
 
-![Menú](https://github.com/java82004/LibreriaAlura-java/assets/156710851/be3c9735-8dc3-4841-8d6c-47be42f96166)
+Al ejecutar la aplicación, se muestra un menú interactivo en la consola donde el usuario puede seleccionar distintas opciones:
+
+![Menú](https://github.com/java82004/LibreriaAlura-java/assets/156710851/4c9b60e0-3d81-404f-ac4a-4ab95437c76d)
 
 
 Seleccione la opción deseada ingresando el número correspondiente y siga las instrucciones en pantalla.
@@ -58,5 +79,16 @@ Seleccione la opción deseada ingresando el número correspondiente y siga las i
 
 ## Contribuir
 
-Si deseas contribuir a este proyecto, por favor haz un fork del repositorio, crea una rama con tu nueva característica o corrección,
-y envía un pull request para revisión.
+¡Las contribuciones son bienvenidas! Si deseas contribuir, por favor sigue estos pasos:
+
+1.	Haz un fork del repositorio.
+2.	Crea una nueva rama (git checkout -b feature-nueva-funcionalidad).
+3.	Realiza tus cambios y commitea (git commit -am 'Agregar nueva funcionalidad').
+4.	Haz push a la rama (git push origin feature-nueva-funcionalidad).
+5.	Abre un Pull Request para revisión.
+
+¡Gracias por tomarte el tiempo de revisar Librería Alura!
+
+
+Asegúrate de reemplazar `"tu-usuario"` y `"tu-contrasena"` con tus propios datos y credenciales. Además, puedes actualizar cualquier otra información que sea específica para tu proyecto.
+
